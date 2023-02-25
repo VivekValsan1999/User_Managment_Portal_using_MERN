@@ -6,6 +6,7 @@ const morgan=require("morgan");
 const bodyParser=require("body-parser");
 const connectDB=require("./server/database/ConnectToDB");
 const userModel=require("./server/model/userManagmentSchemaModel");
+const routes=require("./server/routing/routing");
 
 // setting up the express app
 const app=new express();
@@ -29,9 +30,7 @@ app.use(bodyParser.json());
 connectDB();
 
 // routes
-app.get("/", (req,res)=>{
-    res.send(`User Managment Portal`)
-})
+app.use("/user",routes);
 
 // Listening to port
 app.listen(PORT,()=>{
